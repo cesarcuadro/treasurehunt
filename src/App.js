@@ -33,7 +33,11 @@ const App = () => {
   const [bombLocation, setBombLocation] = useState(Math.floor(Math.random()  * board.length))
 
   const reset = () => {
+
     setBoard(originalArray)
+
+    setTreasureLocation()
+    setBombLocation()
   }
 
   const handleGamePlay = (index) => {
