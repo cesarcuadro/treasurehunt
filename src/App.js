@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Square from './components/Square'
 import "./App.css"
+import userEvent from "@testing-library/user-event"
 
 const App = () => {
   //Will represent our grid
@@ -16,11 +17,28 @@ const App = () => {
     "?"
   ])
 
+  const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random()  * board.length))
+
+  const [bombLocation, setBombLocation] = useState(Math.floor(Math.random()  * board.length))
+
   const handleGamePlay = (index) => {
     // alert(index)
     let updatedBoard = [...board] // important step
-    updatedBoard[index] = "🌴"
+    //make conditional for either winner or loser box
+    // makes a copy of the board in state so that we can modify a single instance inside the array
+    if (index === treasureLocation) {
+      //updating a single instance of the copied array to treasure emoji
+      updatedBoard[index] = "💎"
+      //setting entire board to state
     setBoard(updatedBoard)
+    } else if (index === bombLocation) {
+      updatedBoard[index] = "💣"
+    setBoard(updatedBoard)
+    } else {
+      updatedBoard[index] = "🌴"
+    setBoard(updatedBoard)
+    }
+
   }
 
   return (
