@@ -1,10 +1,21 @@
 import React, { useState } from "react"
 import Square from './components/Square'
 import "./App.css"
-import userEvent from "@testing-library/user-event"
+import Button from './components/Button'
 
 const App = () => {
   //Will represent our grid
+  const originalArray = [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+  ]
   const [board, setBoard] = useState([
     "?",
     "?",
@@ -20,6 +31,10 @@ const App = () => {
   const [treasureLocation, setTreasureLocation] = useState(Math.floor(Math.random()  * board.length))
 
   const [bombLocation, setBombLocation] = useState(Math.floor(Math.random()  * board.length))
+
+  const reset = () => {
+    setBoard(originalArray)
+  }
 
   const handleGamePlay = (index) => {
     // alert(index)
@@ -44,6 +59,7 @@ const App = () => {
   return (
     <>
       <h1>Treasure Hunt Game</h1>
+        <Button reset={reset}/>
         <div className="gameboard">
           {/* Map through the board array to create all the boxes needed */}
           {board.map((value, index) => {
