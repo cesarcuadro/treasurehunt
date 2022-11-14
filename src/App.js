@@ -16,13 +16,24 @@ const App = () => {
     "?"
   ])
 
+  const handleGamePlay = (index) => {
+    alert(index)
+  }
+
   return (
     <>
       <h1>Treasure Hunt Game</h1>
         <div className="gameboard">
-      {/* Map through the board array to create all the boxes needed */}
-      {board.map((value, index) => {
-        return <Square value={value} key={index} />
+          {/* Map through the board array to create all the boxes needed */}
+          {board.map((value, index) => {
+          return (
+            <Square 
+            value={value} 
+            key={index} 
+            index={index}
+            handleGamePlay={handleGamePlay}
+          />
+        )
       })}
       </div>
     </>
