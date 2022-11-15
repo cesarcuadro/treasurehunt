@@ -7,6 +7,7 @@ const Button = (props) => {
   return (
     <>
         <button className='button' onClick={handleClick}>Play Again</button>
+        
     </>
   )
 }
