@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Square from './components/Square'
 import "./App.css"
 import Button from './components/Button'
-import Countdown from "./components/Countdown"
+// import Countdown from "./components/Countdown"
 
 const App = () => {
   //Will represent our grid
@@ -41,29 +41,36 @@ const App = () => {
     setBombLocation(Math.floor(Math.random() * board.length))
   }
 
-   const [time, setTime] = useState(5)
+
+
+const [time, setTime] = useState(5)
 
   const handleGamePlay = (index) => {
     // alert(index)
     let updatedBoard = [...board] // important step
     //make conditional for either winner or loser box
     // makes a copy of the board in state so that we can modify a single instance inside the array
-    if (index === treasureLocation) {
+    if (index === treasureLocation && time===1) {
       //updating a single instance of the copied array to treasure emoji
       updatedBoard[index] = "💎"
       //setting entire board to state
     setBoard(updatedBoard)
     setTime("Winner")
-    } else if (index === bombLocation) {
+    } else if (index === bombLocation && time===1) {
       updatedBoard[index] = "💣"
+    setBoard(updatedBoard)
+    setTime("Lose")
+    } else if (time === 1) {
     setBoard(updatedBoard)
     setTime("Lose")
     } else {
       updatedBoard[index] = "🌴"
-    setBoard(updatedBoard)
-    setTime(time - 1)
+      setBoard(updatedBoard)
+      setTime(time - 1)
     }
   }
+
+
 
   return (
     <>
